@@ -1,0 +1,26 @@
+<div class="container">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @post.image.url, size: 13*13 %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @post.content %>
+</p>
+
+<% unless @post.user_id == current_user.id %>
+  <% if @favorite.present? %>
+    <%= link_to 'Cancel favorite', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+  <% else %>
+    <%= link_to 'Make it a favorite', favorites_path(post_id: @post.id), method: :post, class: 'btn btn-primary' %>
+  <% end %>
+<% end %>
+<% if session[:user_id] == @post.user.id %>
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%end%>
+<%= link_to 'List of posts', posts_path %>
+
+</div>

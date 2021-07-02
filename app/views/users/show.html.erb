@@ -1,0 +1,25 @@
+<div class="container">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Picture:</strong>
+  <%= image_tag @user.picture.url, size: 12*12  %>
+</p>
+
+<% if logged_in? %>
+  <button type="button" class="btn btn-warning"><%= link_to 'Edit', edit_user_path(@user) %></button>
+<%else%>
+  <button type="button" class="btn btn-info"><%= link_to 'Log in', new_session_path%></button>
+<%end%>
+
+</div>

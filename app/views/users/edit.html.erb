@@ -1,0 +1,24 @@
+<div class =" users_h1_box "><h1> User's Edition Screen</h1></div>
+
+  <%= form_with(model: @user, local: true ) do |f| %>
+    <form class="login-container">
+      <%= f.label "name：" %><br>
+      <%= f.text_field :name %><br>
+      <%= f.label "email：" %><br>
+      <%= f.text_field :email %><br>
+      <%= f.label "password："  %><br>
+      <%= f.password_field :password %><br>
+      <%= f.label "password_confirmation："%><br>
+      <%= f.password_field :password_confirmation %><br><br>
+      <%= f.label "profile picture"%>
+      <% if @user.image.url  %>
+        <%= image_tag(@user.image.url) if @user.image && @user.image.url %>
+      <% end %>
+      <%= f.file_field :image %>
+      <%= f.hidden_field :image_cache %><br><br>
+
+      <%= f.submit "Edit" %><br><br>
+    </form>
+    <% end %>
+</div>
+<%= link_to "Back", user_path(@user.id)%>
